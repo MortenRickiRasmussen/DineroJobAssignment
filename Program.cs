@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using System.Linq;
 
 namespace dinero
 {
@@ -16,15 +17,16 @@ namespace dinero
 
         public static TriangleType GetTriangleType(int a, int b, int c) {
 
-            if (a.Equals(b) && b.Equals(c)) {
-                return TriangleType.Equilateral;
-            } 
-            
-            if (a.Equals(b) || a.Equals(c) || b.Equals(c)) {
-                return TriangleType.Isosceles;
-            } 
+            int[] values = new int[3] {a, b, c};
 
-            return TriangleType.Scalene;
+            switch (values.Distinct().Count()) {
+                case 1:
+                    return TriangleType.Equilateral;
+                case 2:
+                    return TriangleType.Isosceles;
+                default:
+                    return TriangleType.Scalene;
+            }
         }
 
         static void Main(string[] args)
@@ -38,7 +40,7 @@ namespace dinero
             var sideC = Console.ReadLine();
             
             if (!int.TryParse(sideA, out var a ) || !int.TryParse(sideB, out var b) || !int.TryParse(sideC, out var c)) {
-                Console.WriteLine("One of the entered values are not an interger");
+                Console.WriteLine("One of the entered values are not an interger, please try again");
                 goto Start;
             }
 
@@ -62,6 +64,9 @@ namespace dinero
             
             Assert.AreEqual(TriangleType.Isosceles, Program.GetTriangleType(1, 2, 2), "GetTriangleType(1, 2, 2) did not return Isoseles");
             
-            Assert.AreEqual(TriangleType.Scalene, Program.GetTriangleType(1, 2, 3), "GetTriangleType(1, 2, 3) did not return Scalene");        }
+            Assert.AreEqual(TriangleType.Isosceles, Program.GetTriangleType(2, 2, 1), "GetTriangleType(2, 2, 1) did not return Isoseles");
+
+            Assert.AreEqual(TriangleType.Scalene, Program.GetTriangleType(1, 2, 3), "GetTriangleType(1, 2, 3) did not return Scalene");
+        }
     }
 }
