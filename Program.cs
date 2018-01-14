@@ -4,8 +4,7 @@ using System.Linq;
 
 namespace dinero
 {
-    [Flags]
-    enum TriangleType : int
+    enum TriangleType
     {
         Equilateral,
         Isosceles,
