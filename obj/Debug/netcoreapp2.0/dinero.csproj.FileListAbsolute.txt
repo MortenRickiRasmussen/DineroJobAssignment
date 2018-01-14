@@ -8,3 +8,6 @@
 /home/morten/git/dinero/obj/Debug/netcoreapp2.0/dinero.AssemblyInfo.cs
 /home/morten/git/dinero/obj/Debug/netcoreapp2.0/dinero.dll
 /home/morten/git/dinero/obj/Debug/netcoreapp2.0/dinero.pdb
+/home/morten/git/dinero/bin/Debug/netcoreapp2.0/NUnit3.TestAdapter.dll
+/home/morten/git/dinero/bin/Debug/netcoreapp2.0/nunit.engine.netstandard.dll
+/home/morten/git/dinero/bin/Debug/netcoreapp2.0/Mono.Cecil.dll

@@ -6,25 +6,25 @@ namespace dinero
     [Flags]
     enum TriangleType : int
     {
-        equilateral,
-        isoseles,
-        scalene    
+        Equilateral,
+        Isoseles,
+        Scalene    
     }
 
     class Program
     {
 
-        public static int getTriangleType(int a, int b, int c) {
+        public static TriangleType GetTriangleType(int a, int b, int c) {
 
             if (a == b && b == c) {
-                return (int) TriangleType.equilateral;
+                return TriangleType.Equilateral;
             } 
             
             if (a == b || a == c || b == c) {
-                return (int) TriangleType.isoseles;
+                return TriangleType.Isoseles;
             } 
 
-            return (int) TriangleType.scalene;
+            return TriangleType.Scalene;
         }
 
         static void Main(string[] args)
@@ -42,13 +42,26 @@ namespace dinero
                 goto Start;
             }
 
-            int result = getTriangleType(a, b, c);
-
+            TriangleType result = GetTriangleType(a, b, c);
 
             Console.WriteLine("You triangle is " + result);
 
             goto Start;
-
         }
+
+    }
+
+    [TestFixture]
+    public class Tester {
+        
+        [Test]
+        public void TestGetTriangleType() {
+            Assert.AreEqual(TriangleType.Equilateral, Program.GetTriangleType(1, 1, 1), "GetTriangleType(1, 1, 1) did not return equilaterel");
+            
+            Assert.AreEqual(TriangleType.Isoseles, Program.GetTriangleType(1, 1, 2), "GetTriangleType(1, 1, 2) did not return Isoseles");
+            
+            Assert.AreEqual(TriangleType.Isoseles, Program.GetTriangleType(1, 2, 2), "GetTriangleType(1, 2, 2) did not return Isoseles");
+            
+            Assert.AreEqual(TriangleType.Scalene, Program.GetTriangleType(1, 2, 3), "GetTriangleType(1, 2, 3) did not return Scalene");        }
     }
 }
